@@ -1,0 +1,13 @@
+pip:
+    pip-21.0.1 
+    python-3.8.0
+    sqlite-3.35.4
+    gym
+    torch 
+    torchvision 
+    torchaudio
+    box2D=2.3.10
+    pyglet=1.5.15
+
+conda:
+    install swig

@@ -20,6 +20,10 @@ class conv_params:
     fc2_out: int
     deconv_layers: Tuple[conv_layer, conv_layer, conv_layer, conv_layer]
     tr_epochs : int
+    batch_size : int
+    resize : Tuple [int, int]
+    ckp_folder : str
+    ckp_path : str
 
 @dataclass
 class Configuration:

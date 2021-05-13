@@ -3,9 +3,10 @@ from src.vae.config import conv_params, conv_layer
 import dacite
 import torch
 import pytest
+from src.vae.buffer import Buffer
 
 @pytest.fixture
-def vae_net():
+def test_config():
     
     conv1 = conv_layer("relu", 32, 4, 2, 0)
     conv2 = conv_layer("relu", 64, 4, 2, 0)
@@ -26,11 +27,26 @@ def vae_net():
         "latent_dim" : 32,
         "fc2_out": 1024,
         "deconv_layers" : (deconv1, deconv2, deconv3, deconv4),
-        "tr_epochs" : 10
+        "tr_epochs" : 200,
+        "batch_size": 12,
+        "resize": (64,64),
+        "ckp_folder": "../ckp",
+        "ckp_path" : "last_ckp.pth"
     }
     converters = {}
     config = dacite.from_dict(
         data_class = conv_params, 
         data = raw_data,
         config = dacite.Config(type_hooks = converters))
-    return ConvVAE(conv_params=config)
+
+    return config
+
+
+@pytest.fixture
+def vae_net(test_config):
+    return ConvVAE(conv_params=test_config)
+
+
+@pytest.fixture
+def new_buffer():
+    return Buffer (96)

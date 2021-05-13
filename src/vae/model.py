@@ -67,7 +67,8 @@ class ConvVAE(nn.Module):
         std = torch.exp(0.5*log_var) # standard deviation
         eps = torch.randn_like(std) # `randn_like` as we need the same size
         sample = mu + (eps * std) # sampling
-        return sample
+        return mu
+        #return sample
  
     def forward(self, x):
         # encoding
@@ -99,3 +100,21 @@ class ConvVAE(nn.Module):
             #print ("Size of x: {}".format(x.size()))
 
         return x, mu, log_var
+    
+    def save_weights(self):
+        """
+        Saves the network checkpoints
+        """
+
+        full_path = self.conv_params.ckp_folder + \
+            "/" + self.conv_params.ckp_path
+        torch.save(self.state_dict(), full_path)
+
+    def load_weights(self, path):
+
+        """
+        Loads weights of the network saved in path
+        """
+        full_path = self.conv_params.ckp_folder + \
+            "/" + path
+        self.load_state_dict(torch.load(full_path))

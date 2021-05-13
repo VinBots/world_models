@@ -19,10 +19,10 @@ Evidence suggest our perception is governed by our brain's prediction of the fut
 * Use of pytest for running tests
 * Use of dataclasses for configuration parameters
 
-
-
 # Resources
 
 * [presentation by the author](https://www.youtube.com/watch?v=HzA8LRqhujk) 
+
+
 
 

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../ml/vae"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../MyAlphaZero"
+		}
+	],
+	"settings": {}
+}
