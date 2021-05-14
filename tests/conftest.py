@@ -7,8 +7,8 @@ from src.vae.buffer import Buffer
 
 @pytest.fixture
 def device():
-    return torch.device('cuda')
-    #return torch.device('cpu')
+    #return torch.device('cuda')
+    return torch.device('cpu')
 
 @pytest.fixture
 def test_config():
