@@ -1,15 +1,12 @@
 import numpy as np
 import torch
-
-#from typing import no_type_check_decorator
-
 from src.vae.train import train_vae
 from src.utils import preprocess, create_gif, tensor_to_image
 import gym
 import pytest
 from src.vae.buffer import Buffer
 
-#@pytest.mark.skip()
+@pytest.mark.skip()
 def test_reconstruct_img(test_config, vae_net, new_buffer):
     
     env = gym.make("CarRacing-v0")

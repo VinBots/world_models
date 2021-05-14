@@ -1,6 +1,6 @@
 pip:
     pip-21.0.1 
-    python-3.8.0
+    python-3.6.13
     sqlite-3.35.4
     gym
     torch 

@@ -21,8 +21,7 @@ def train_vae(model, buffer, preprocess, config):
             loss = reconstruction_loss (x_hat, x) + kld_loss (mu, logvar)
             loss.backward()
             optimizer.step()
-        print ("Epoch {} - Loss = {}".format(ep, loss.item()))
-
+        #print ("Epoch {} - Loss = {}".format(ep, loss.item()))
     return True
 
 
