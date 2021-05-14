@@ -1,5 +1,7 @@
 from src.log_data import LogData
+import pytest
 
+@pytest.mark.skip()
 def test_logdata(tmp_path):
     logdata = LogData(folder=tmp_path)
     print (tmp_path)

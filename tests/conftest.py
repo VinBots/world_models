@@ -6,6 +6,11 @@ import pytest
 from src.vae.buffer import Buffer
 
 @pytest.fixture
+def device():
+    return torch.device('cuda')
+    #return torch.device('cpu')
+
+@pytest.fixture
 def test_config():
     
     conv1 = conv_layer("relu", 32, 4, 2, 0)
@@ -27,10 +32,10 @@ def test_config():
         "latent_dim" : 32,
         "fc2_out": 1024,
         "deconv_layers" : (deconv1, deconv2, deconv3, deconv4),
-        "tr_epochs" : 200,
+        "tr_epochs" : 50,
         "batch_size": 12,
         "resize": (64,64),
-        "ckp_folder": "../ckp",
+        "ckp_folder": "ckp",
         "ckp_path" : "last_ckp.pth"
     }
     converters = {}
@@ -43,8 +48,8 @@ def test_config():
 
 
 @pytest.fixture
-def vae_net(test_config):
-    return ConvVAE(conv_params=test_config)
+def vae_net(test_config, device):
+    return ConvVAE(conv_params=test_config, device = device).to(device)
 
 
 @pytest.fixture

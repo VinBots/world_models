@@ -10,15 +10,18 @@ Each convolution and deconvolution layer uses a stride of 2. The layers are indi
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import os
 
 # define a Conv VAE
 class ConvVAE(nn.Module):
-    def __init__(self, conv_params):
+    def __init__(self, conv_params, device = torch.device('cuda')):
         super(ConvVAE, self).__init__()
         self.conv_params = conv_params
+        #self.device = device
  
         # encoder
         self.encoder_conv = []
+        #device = torch.device('cuda')
         in_c = self.conv_params.image_channels
         for i in range(self.conv_params.nb_layers):
             if i > 0:
@@ -30,7 +33,7 @@ class ConvVAE(nn.Module):
                 kernel_size = self.conv_params.conv_layers[i].filter_size, 
                 stride = self.conv_params.conv_layers[i].stride, 
                 padding = self.conv_params.conv_layers[i].padding
-                )
+                ).to(device)
 
             self.encoder_conv.append(conv_layer)
 
@@ -53,7 +56,7 @@ class ConvVAE(nn.Module):
                 kernel_size = self.conv_params.deconv_layers[i].filter_size, 
                 stride = self.conv_params.deconv_layers[i].stride, 
                 padding = self.conv_params.deconv_layers[i].padding
-                )
+                ).to(device)
 
             self.decoder_conv.append(deconv_layer)
 
@@ -67,8 +70,7 @@ class ConvVAE(nn.Module):
         std = torch.exp(0.5*log_var) # standard deviation
         eps = torch.randn_like(std) # `randn_like` as we need the same size
         sample = mu + (eps * std) # sampling
-        return mu
-        #return sample
+        return sample
  
     def forward(self, x):
         # encoding
@@ -97,17 +99,15 @@ class ConvVAE(nn.Module):
 
             elif self.conv_params.deconv_layers[i].activation == "sigmoid":
                 x = torch.sigmoid (self.decoder_conv[i](x))
-            #print ("Size of x: {}".format(x.size()))
-
+        
         return x, mu, log_var
     
     def save_weights(self):
         """
         Saves the network checkpoints
         """
-
-        full_path = self.conv_params.ckp_folder + \
-            "/" + self.conv_params.ckp_path
+            #""/"" + self.conv_params.ckp_path
+        full_path = os.path.join(self.conv_params.ckp_folder,self.conv_params.ckp_path)
         torch.save(self.state_dict(), full_path)
 
     def load_weights(self, path):
