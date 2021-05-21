@@ -1,20 +1,28 @@
-from vae import vae
+import gym
+
+from vae.model import VAE
 from rnn import rnn
 from controller import controller
+from config import Configuration
 
 # Choose the task
-task = "car_racing"
+task = "CarRacing-v0"
+env = gym.make(task)
 
 # initialize env
+
 
 
 def rollout(controller):
   '''
   env, rnn, vae are global variables  
   '''
+  vae = (params=vae_config, device = device).to(device)
+
 
   obs = env.reset()
   h = rnn.initial_state()
+  
   done = False
   cumulative_reward = 0
 

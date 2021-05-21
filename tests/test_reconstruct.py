@@ -19,13 +19,13 @@ def test_reconstruct_img(test_config, vae_net, new_buffer, device):
         if done:
             observation = env.reset()
     env.close()
-    #create_gif (new_buffer)
+    create_gif (new_buffer)
 
     test = train_vae (vae_net, new_buffer, preprocess, test_config, device)
     
     vae_net.save_weights()
 
-    reconstruct_buffer = Buffer(96)
+    reconstruct_buffer = Buffer("reconstruct", 96)
     img_list = list(new_buffer.memory)
 
     x = torch.stack(

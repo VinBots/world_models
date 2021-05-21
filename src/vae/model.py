@@ -13,9 +13,9 @@ import torch.nn.functional as F
 import os
 
 # define a Conv VAE
-class ConvVAE(nn.Module):
+class VAE(nn.Module):
     def __init__(self, conv_params, device = torch.device('cuda')):
-        super(ConvVAE, self).__init__()
+        super(VAE, self).__init__()
         self.conv_params = conv_params
         #self.device = device
  
@@ -106,7 +106,6 @@ class ConvVAE(nn.Module):
         """
         Saves the network checkpoints
         """
-            #""/"" + self.conv_params.ckp_path
         full_path = os.path.join(self.conv_params.ckp_folder,self.conv_params.ckp_path)
         torch.save(self.state_dict(), full_path)
 

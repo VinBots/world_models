@@ -14,11 +14,12 @@ class Buffer:
     """Fixed-size buffer to store experience tuples."""
 
     def __init__(
-        self, max_size, seed=0):
+        self, name, max_size, seed=0):
         """
         Initializes a ReplayBuffer object
         """
 
+        self.name = name
         self.max_size = max_size
         self.seed = random.seed(seed)
         self.memory = deque(maxlen=self.max_size)

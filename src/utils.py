@@ -31,8 +31,7 @@ def reconstruction_loss(x_hat, x):
 
 def kld_loss(mu, logvar):
     loss = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp()) / mu.size()[0]
-    #loss = 0
-    #print ("KLD LOSS : {}".format(loss))
+
     return loss
 
 def tensor_to_image(tensor):
@@ -42,4 +41,4 @@ def tensor_to_image(tensor):
 def create_gif(buffer):
     dataset = [img for img in buffer.memory]
     clip = ImageSequenceClip (dataset, fps = 20)
-    clip.write_gif('test.gif', 20)
+    clip.write_gif(buffer.name + ".gif", 20)
