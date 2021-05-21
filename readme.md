@@ -20,7 +20,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/VinBots/world_models"><img src="docs/assets/world_model_comic.jpeg" alt="world_models"></a>
+  <a href="https://github.com/VinBots/world_models"><img src="docs/assets/world_model_comic.jpeg" width="600" alt="world_models"></a>
 </h1>
 <h5 align="center">A World Model, from Scott McCloud’s Understanding Comics.</h2>
 
