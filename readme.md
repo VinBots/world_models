@@ -26,6 +26,8 @@
 
 ## About
 
+**Note that this project status is work-in-progress**
+
 Evidence suggest our perception is governed by our brain's prediction of the future based on our internal model. Can we build models of the world? Can we train and learn in our imagined world?
 
 This repository is the reproduction of the paper, Ha and Schmidhuber, "Recurrent World Models Facilitate Policy Evolution", 2018.
