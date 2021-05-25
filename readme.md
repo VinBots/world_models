@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/VinBots/world_models"><img src="docs/assets/world_model_schematic.svg" width="300" height="300" alt="World Models"></a>
+  <a href="https://github.com/VinBots/world_models"><img src="docs/assets/logo.jpg" width="300" height="300" alt="World Models"></a>
 </h1>
 
 <h4 align="center">A world model built by 3 components :  vision, memory and controller </h4>
